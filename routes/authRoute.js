@@ -1,18 +1,19 @@
 import {login} from '../services/admin.js'
 
-export function authRoute (router){
+export  function authRoute (router){
     router.get('/login',(request,response)=>{
             response.render("auth/login")
     })
-    router.post('/login',(request,response)=>{
+    router.post('/login', async (request,response)=>{
 
             let {username,password}=request.body
-            let {authState,user} = login(username,password)
+            let {state,admin} = await login(username,password)
             //on met user dans la session
-            if (authState) {
-                response.redirect('/login')
-            }else{
+            
+            if (state) {
                 response.redirect('/productList')
+            }else{
+                response.redirect('/login')
             }
     })
 

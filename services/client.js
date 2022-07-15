@@ -14,10 +14,13 @@ export async function addClient(name,phoneNumber,sexe,quartier,productId){
     })
 }
 
-export async function findClientByProduct(productIb){
+export async function findClientByProduct(productId){
     let clientTab =  await prisma.client.findMany({
        where:{
-        productId:productIb
+        productId:productId
+       },
+       include:{
+        product:true
        }
     })
     return clientTab;

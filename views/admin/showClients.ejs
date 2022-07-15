@@ -19,29 +19,31 @@
       Liste des clients
     </div>
     <div class="col">
-     
-     
-    
+      il y'a <strong> <%= clientTab.length  %></strong> <strong> client</strong> pour ce  (cette) <strong> <% if(clientTab.length>0){%> <%= clientTab[0].product.name  %>  <%}else{%> <%= product.name %>  <%} %> </strong>  
+    </div>
+    <div class="col">
+      <a href="" class="btn btn-dark" role="button"> telecharger csv</a>
     </div>
     <table class="table ">
   <thead>
     <tr>
-      <th scope="col">#</th>
       <th scope="col">Nom & prenoms</th>
       <th scope="col">Tél</th>
       <th scope="col">Quartier</th>
-      
+      <th scope="col">sexe</th> 
     </tr>
   </thead>
   <tbody>
+    <% clientTab.forEach(client=>{  %> 
     <tr>
-      <th scope="row">1</th>
-      <td>Kodjo Ama</td>
-      <td>97997966</td>
-      <td>Agoè-zongo</td>
-
+      
+      <td><%= client.name  %> </td>
+      <td><%= client.phoneNumber  %> </td>
+      <td><%= client.quartier  %> </td>
+      <td><%= client.sexe  %> </td>
 
     </tr>
+    <% }) %> 
    
   </tbody>
 </table>

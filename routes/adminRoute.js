@@ -1,14 +1,17 @@
-import {addProduct,findProducts} from '../services/product.js'
+import {addProduct,findProducts,findByToken} from '../services/product.js'
 import {addClient,findClientByProduct} from'../services/client.js'
 export function adminRoute(router){
     router.get('/addProduct',(request,response)=>{
         response.render("admin/addProduct")
     })
     router.post('/addProduct',(request,response)=>{
-        let productFile , authorId // je doit implenter  fileuplod et la session pour les 
+        let   authorId // je doit implenter  fileuplod et la session pour les 
+        //let productFile= request.files
+        let {productFile}= request.files
         let {productName}=request.body
+        let test = request.body
         if(productFile&&productName){
-            addProduct(productName,productFile,authorId)
+            addProduct(productName,Buffer.from(productFile.data).toString('base64'),1)
             response.redirect("/productList")
         }else{
             response.redirect("/addProduct")
@@ -16,15 +19,21 @@ export function adminRoute(router){
        
     })
 
-    router.get('/productList',(request,response)=>{
-            let productTab =  findProducts()
+    router.get("/productList",async (request,response)=>{
+            let productTab = await findProducts()
+            
+            response.locals = productTab
             //on va passer ça a la vue
-            response.render("admin/productList")
+            response.render("admin/productList",{productTab:productTab})
     })
 
-    router.get('/showClients/:id',(request,response)=>{
+    router.get('/showClients/:idProduct',async(request,response)=>{
         let {idProduct } = request.params
-        let clientTab= findClientByProduct(idProduct)
+        console.log(idProduct);
+        let product = await findByToken(idProduct)
+        response.locals.product = product
+        let clientTab= await findClientByProduct(product.id)
+        response.locals.clientTab=clientTab
         //on va passer ça a la vue
         response.render("admin/showClients")
     })

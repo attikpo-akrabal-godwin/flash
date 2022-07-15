@@ -1,23 +1,29 @@
 import {addClient} from "../services/client.js"
+import {findByToken} from '../services/product.js'
 export function clientRouter(router){
     router.get("/",(request,response)=>{
         response.render('index')
     })
 
-    router.get("/userContact",(request,response)=>{
-        //on va passer ça a la vue
-        response.render("client/userContact")
-    })
+    
 
-    router.get("/userContact/:productId",(request,response)=>{
+    router.get("/userContact/:productId",async (request,response)=>{
         let {productId}=request.params
-        //on va passer ça a la vue
+        // on doit verifier si ce produit est dans la base  verifier 
+        response.locals.id= productId
+        let product = await findByToken(productId)
+        response.locals.product = product
         response.render("client/userContact")
     })
     
-    router.post("/userContact",(request,response)=>{
-        let {name,phoneNumber,sexe,quartier,productId}=request.boby
-        addClient(name,phoneNumber,sexe,quartier,productId)
+    router.post("/userContact",async(request,response)=>{
+        console.log(request.body);
+        console.log(request.body.name);
+
+        let {name,phoneNumber,quartier,sexe,id}=request.body
+        
+        let product  = await findByToken(id)
+        addClient(name,phoneNumber,sexe,quartier,parseInt(product.id))
         response.redirect("/merci")
     })
 

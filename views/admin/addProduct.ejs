@@ -22,20 +22,19 @@
   <body class="text-center">
     
 <main class="form-signin w-100 m-auto">
-  <form>
+  <form method="post" action="/addProduct" enctype="multipart/form-data">
     <img class="mb-4" src="/static/css/bootstrap-logo.svg" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">Ajouter un produit</h1>
 
     <div class="form-floating">
-      <input type="text" class="form-control" id="floatingInput" placeholder="">
+      <input type="text" class="form-control" name="productName" id="floatingInput" placeholder="">
       <label for="floatingInput">Nom du produit</label>
     </div><br/>
     <div class="input-group">
-  <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+  <input type="file" name="productFile" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
 </div><br/>
 
-    <a href="index.html" class="w-100 btn btn-lg btn-primary" role="button">Ajouter</a>
-
+    <button class="w-100 btn btn-lg btn-primary" type="submit"> Ajouter</button>
     <p class="mt-5 mb-3 text-muted">&copy; Flash 2022</p>
   </form>
 </main>

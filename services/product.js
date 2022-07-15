@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-//import uniqid from 'uniqid'
+import uniqid from 'uniqid'
 const prisma = new PrismaClient()
 
 export async function addProduct(name,photo,authorId){
@@ -8,7 +8,7 @@ export async function addProduct(name,photo,authorId){
             name:name,
             photo:photo,
             authorId:authorId,
-            //token:uniqid()
+            token:uniqid()
         }
     })
 }
@@ -16,6 +16,16 @@ export async function addProduct(name,photo,authorId){
 export async function findProducts(){
     let productTAb = await prisma.product.findMany()
     return productTAb
+}
+
+export async function findByToken(token){
+    let product = await prisma.product.findUnique({
+        where:{
+            token: token
+        }
+    })
+    console.log(product);
+    return product
 }
 
 

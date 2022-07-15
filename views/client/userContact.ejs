@@ -23,46 +23,48 @@
     
     <div class="container">
       <main class=" w-100 m-auto">
-  <form>
-    <img class="mb-4" src="/static/css/bootstrap-logo.svg" alt="" width="72" height="57">
-    <h1 class="h3 mb-3 fw-normal">Renseignes vos informations</h1>
+  <form method="post" action="/userContact">
+      <img class="mb-4" src="data:image/png;base64,<%= product.photo %> " alt="" width="72" height="57">
+       
+      <h1 class="h3 mb-3 fw-normal">Renseignes vos informations</h1>
   <div class="row">
     <div class="col">
-     <div class="form-floating">
-      <input type="nomProd" class="form-control" id="floatingInput" placeholder="Sac de riz">
-      <label for="floatingInput">Nom et prenoms</label>
-    </div>
+      <div class="form-floating">
+        <input type="text" name="name" class="form-control" id="floatingInput" placeholder="votre nom ">
+        <label for="floatingInput">Nom et prenoms</label>
+      </div>
     </div><br/>
-    <div class="col">
-      <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="91334455">
-      <label for="floatingPassword">Numéro de telephone</label>
+      <div class="col">
+          <div class="form-floating">
+          <input type="number" name="phoneNumber" class="form-control" id="floatingPassword" placeholder="91334455">
+          <label for="floatingPassword">Numéro de telephone</label>
+      </div>
     </div>
-    </div>
-  </div><br/>
-  <div class="row">
-    <div class="col">
-      <div class="form-floating">
-      <input type="nomProd" class="form-control" id="floatingInput" placeholder="Agoè">
-      <label for="floatingInput">Quartier de résidence</label>
-    </div>
-    </div>
-    <div class="col">
-    
-      <select class="form-select" aria-label="Default select example">
-  <option selected>Sexe</option>
-  <option value="1">M</option>
-  <option value="2">F</option>
 
-</select>
-    </div>
-  </div><br/>
+    </div><br/>
+      <div class="row">
+        <div class="col">
+          <div class="form-floating">
+          <input type="text" name="quartier"  class="form-control" id="floatingInput" placeholder="votre quartier">
+          <label for="floatingInput">Quartier de résidence</label>
+        </div>
+      </div>
+
+      <div class="col">
+        <label for="">sexe</label>
+        <select name="sexe" class="form-select" aria-label="Default select example" placeholder="sexe">
+            <option selected value="M">M</option>
+            <option value="F">F</option>
+        </select>
+      </div>
+
+    </div><br/>
   
   
   <div class="row">
     <div class="col">
       
-    <a  class="w-100 btn btn-lg btn-primary" role="button" data-bs-toggle="modal" href="#exampleModalToggle">Soumettre</a>
+  <button class="w-100 btn btn-lg btn-primary" type="submit">Soumettre</button>
 
     <p class="mt-5 mb-3 text-muted">&copy; Flash 2022</p>
 
@@ -71,6 +73,7 @@
   
   </div>
 </div>
+<input type="hidden" name="id"  value="<%= id  %> ">
   </form>
 </main>
 </div>
