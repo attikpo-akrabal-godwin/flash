@@ -3,6 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
 }
 
 datasource db {
@@ -34,6 +35,6 @@ model client{
   phoneNumber String @db.VarChar(255)
   sexe String //check in M and F
   quartier String @db.VarChar(255)
-  product product @relation(fields: [productId],references: [id])
+  product product @relation(fields: [productId],references: [id],onDelete:Cascade)
   productId Int
 }

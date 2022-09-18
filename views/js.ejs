@@ -1,0 +1,26 @@
+<script>
+    function copy(token){
+     navigator.clipboard.writeText('localhost:3000/userContact/'+token);
+     console.log( '<%= process.env.DOMAIN%>');
+     alert(`le lien copié 😊 `)
+    }
+    let del = document.querySelector('#cool')
+    let  confirmit = function(event){
+     if(!confirm('cette action vas supprimer le produit et ces client ')){
+       event.preventDefault()}  ;
+       console.log("cool");
+    }
+    if (del) {
+      del.addEventListener("click",confirmit,false);
+    }
+    
+    setTimeout(() => {
+     let affichage= document.querySelector('#affichage')
+     if (affichage) {
+       affichage.style.visibility = 'hidden';
+     } 
+    }, 5000);
+   
+    
+   </script>
+   

@@ -1,3 +1,4 @@
+import { isConnect } from '../middleware/isConnect.js'
 import {login} from '../services/admin.js'
 
 export  function authRoute (router){
@@ -9,11 +10,11 @@ export  function authRoute (router){
             let {username,password}=request.body
             let {state,admin} = await login(username,password)
             //on met user dans la session
-            
+            request.addUser(admin)
             if (state) {
-                response.redirect('/productList')
+                request.sucess("conecter avec sucess",'/productList')
             }else{
-                response.redirect('/login')
+                request.errors("identifiant incorrect",'/login')
             }
     })
 

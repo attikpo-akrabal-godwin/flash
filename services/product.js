@@ -24,8 +24,16 @@ export async function findByToken(token){
             token: token
         }
     })
-    console.log(product);
     return product
 }
 
+export async function deleteByToken(id){
+    let product = await prisma.product.delete({
+        where:{
+            id:id
+        }
+    })
+
+    return product
+}
 

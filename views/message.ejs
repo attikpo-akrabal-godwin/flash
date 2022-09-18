@@ -1,0 +1,12 @@
+
+    <% if(locals.sucess !== undefined){%>
+        <div class="alert alert-success" id="affichage" role="alert">
+            <%= locals.sucess %>
+        </div>
+    <%}%>
+    <% if(locals.errors!== undefined){%>
+        <div class="alert alert-danger" id="affichage" role="alert">
+            <%= locals.errors %>
+        </div>
+    <%}%>
+
