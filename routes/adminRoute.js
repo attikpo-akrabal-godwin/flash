@@ -20,7 +20,7 @@ export function adminRoute(router){
         }
         
         if (productFile&&productName) {
-            addProduct(productName,Buffer.from(productFile.data).toString('base64'),1)
+            addProduct(productName,Buffer.from(productFile.data).toString('base64'),request.session.user.id)
             request.sucess("produit ajouter ","/productList")
         }
        
@@ -34,7 +34,6 @@ export function adminRoute(router){
 
     router.get('/showClients/:idProduct',isConnect,async(request,response)=>{
         let {idProduct } = request.params
-        console.log(idProduct);
         let product = await findByToken(idProduct)
         response.locals.product = product
         let clientTab= await findClientByProduct(product.id)

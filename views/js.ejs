@@ -4,14 +4,17 @@
      console.log( '<%= process.env.DOMAIN%>');
      alert(`le lien copié 😊 `)
     }
-    let del = document.querySelector('#cool')
+    let del = document.querySelectorAll('.cool')
+    console.log(del);
     let  confirmit = function(event){
      if(!confirm('cette action vas supprimer le produit et ces client ')){
        event.preventDefault()}  ;
        console.log("cool");
     }
     if (del) {
-      del.addEventListener("click",confirmit,false);
+      for (let i = 0; i < del.length; i++) {
+        del[i].addEventListener("click",confirmit,false);
+      }
     }
     
     setTimeout(() => {
